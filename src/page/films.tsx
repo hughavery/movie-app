@@ -26,10 +26,8 @@ function Films() {
   }
 
   function disableNext() {
-    const maxPageNumber = totalCountFilms/filmsPerPage
-    if (totalCountFilms < pageNumber * filmsPerPage) {
-
-    }
+    const maxPageNumber = Math.ceil(totalCountFilms / filmsPerPage);
+    return pageNumber + 1 >= maxPageNumber;
   }
 
   return (
@@ -47,7 +45,7 @@ function Films() {
       </ul>
       <button onClick={prevPage} disabled={pageNumber <= 0}> previous page</button>
       <p>Page {pageNumber + 1}</p>
-      <button onClick={nextPage} disabled={disableNext}> next page</button>
+      <button onClick={nextPage} disabled={disableNext()}> next page</button>
     </div>
   );
 }
