@@ -12,15 +12,13 @@ export async function getFilms() {
   }
 }
 
-export async function getFilmsPage(startIndex: number) {
+export async function getFilmsPage(pageNumber: number, pageCount: number) {
     try {
-      const response = await axios.get(`${API_URL}/films`);
-      const films = response.data.films;
+      const pageIndex = pageNumber * 5
+      const response = await axios.get(`${API_URL}/films?startIndex=${pageIndex}&count=${pageCount}`);
+      const films = response.data;
   
-      // Use the slice method to get the next five films starting at startIndex
-      const filmsPage = films.slice(startIndex, startIndex + 5);
-  
-      return filmsPage;
+      return films;
     } catch (error) {
       console.error(error);
       return null;
