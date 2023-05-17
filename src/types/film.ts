@@ -1,8 +1,12 @@
 export type Film = {
-  id: number;
+  filmId: number;
   title: string;
-  description: string;
-  director: string
+  genreId: number;
+  directorId: number;
+  directorFirstName: string;
+  directorLastName: string;
   releaseDate: string;
+  ageRating: string;
+  rating: number;
 }
   
