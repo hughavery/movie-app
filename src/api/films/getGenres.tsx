@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from "../URL";
+import {API_URL} from "../CONSTANTS";
 import { Film } from '../../types/film';
 
 export async function getGenres() {

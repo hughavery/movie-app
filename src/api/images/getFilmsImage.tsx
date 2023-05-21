@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from "../URL";
+import {API_URL} from "../CONSTANTS";
 
 export async function getFilmsImage(filmId: number) {
     try {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from "../URL";
+import {API_URL} from "../CONSTANTS";
 import { Film } from '../../types/film';
 
 export async function getFilms() {
@@ -16,8 +16,6 @@ export async function getFilmsPage(
   pageNumber: number,
   pageCount: number,
   searchQuery?: string,
-  directorId?: number,
-  reviewerId?: number,
   sortBy?: string,
   genreIds?: number[],
   ageRatings?: string[]
@@ -25,15 +23,11 @@ export async function getFilmsPage(
     try {
       const pageIndex = pageNumber * pageCount
       let url = `${API_URL}/films?startIndex=${pageIndex}&count=${pageCount}`
+
       if (searchQuery) {
         url += `&q=${searchQuery}`;
       }
-      if (directorId) {
-        url += `&directorId=${directorId}`;
-      }
-      if (reviewerId) {
-        url += `&reviewerId=${reviewerId}`;
-      }
+
       if (sortBy) {
         url += `&sortBy=${sortBy}`;
       }
