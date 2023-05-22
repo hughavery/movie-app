@@ -204,17 +204,15 @@ function Films() {
       {films.map((film) => (
         <li key={film.filmId} className="col-sm-3">
           <div className="card mx-auto">
-          <Link to={`/films/${film.filmId}`}>
-          <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" />
-            <h3>{film.title}</h3>
+          <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" />        
+            <h3>{film.title}</h3>         
             <p>Director: {film.directorFirstName} {film.directorLastName}</p>
             <img src={`${API_URL}/users/${film.directorId}/image`} alt="Photo" width={40} onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
             <p>Release Date: {film.releaseDate}</p>
-            {/* help from chatgpt */}
             <p>Genre: {genres.find((genre) => genre.genreId === film.genreId)?.name}</p>
             <p>Age Rating: {film.ageRating}</p>
             <p>User Ratings: {film.rating}</p>
-            </Link>
+            <Link to={`/films/${film.filmId}`}>More Info</Link>
           </div>
         </li>
       ))}

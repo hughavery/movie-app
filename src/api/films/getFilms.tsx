@@ -2,10 +2,10 @@ import axios from 'axios';
 import {API_URL} from "../CONSTANTS";
 import { Film } from '../../types/film';
 
-export async function getFilms() {
+export async function getFilm(filmId: string) {
   try {
-    const response = await axios.get(`${API_URL}/films`);
-    return response.data.films;
+    const response = await axios.get(`${API_URL}/films/${filmId}`);
+    return response.data;
   } catch (error) {
     console.error(error);
     return null;
