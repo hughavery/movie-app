@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { API_URL, USER_TOKEN } from '../CONSTANTS';
 
-export async function updateUserImage(userId: number, imageFile: File): Promise<void> {
+export async function putUserImage(userId: string, imageFile: File): Promise<void> {
   try {
-    const formData = new FormData();
-    formData.append('image', imageFile);
+
     const userToken = localStorage.getItem(USER_TOKEN);
-    await axios.put(`${API_URL}/users/${userId}/image`, formData, {
+    await axios.put(`${API_URL}/users/${userId}/image`, imageFile, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': imageFile.type,
         'X-Authorization': userToken
       },
     });

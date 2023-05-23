@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../api/user/registerUser';
 import { loginUser } from '../api/user/loginUser';
+import { putUserImage } from '../api/images/putUserImage';
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,8 +41,7 @@ function Register() {
         // Check if the user uploaded a photo
         const imageFile = (e.target as HTMLFormElement).image.files[0];
         if (imageFile) {
-          // Send the image file to the backend
-          // Code to send the image file to the backend goes here
+            putUserImage(userId, imageFile)
         }
 
         // Redirect to the films page or any other desired page upon successful login
