@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../api/user/loginUser';
 import Navbar from './navbar';
-import CreateFilmModal from './createFilmModal'
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -55,7 +54,6 @@ function Login() {
                   </div>
                 </form>
                 <p className="text-center mt-3">Don't have an account? <Link to="/register">Register</Link></p>
-                <CreateFilmModal />
               </div>
             </div>
           </div>

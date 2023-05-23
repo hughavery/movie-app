@@ -6,6 +6,7 @@ import SelectedFilm from "./page/selectedFilm"
 import Login from "./page/login"
 import Home from "./page/home"
 import Register from "./page/register"
+import Gallery from "./page/gallery"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/films/:id" element={<SelectedFilm />} /> {/* Add the route for films/id */}
             <Route path="/login" element={<Login />} /> {/* Add the route for login */}
             <Route path="/register" element={<Register />} /> {/* Add the route for login */}
+            <Route path="/gallery" element={<Gallery />} /> {/* Add the route for gallery */}
           </Routes>
         </div>
       </Router>

@@ -33,8 +33,8 @@ function CreateFilmModal() {
     const filmData = {
       title: String(formData.get('title')),
       description: String(formData.get('description')),
-      releaseDate: String(formData.get('releaseDate')),
-      genre: selectedGenre,
+      releaseDate: formData.get('releaseDate') ? String(formData.get('releaseDate')).replace("T", " ") + ":00" : undefined,
+      genreId: Number(selectedGenre),
       ageRating: selectedAgeRating,
       runtime: Number(formData.get('runtime')),
     };
@@ -76,7 +76,7 @@ function CreateFilmModal() {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Release Date</label>
-                  <input name="releaseDate" type="date" className="form-control" />
+                  <input name="releaseDate" type="datetime-local" className="form-control" />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Genre</label>

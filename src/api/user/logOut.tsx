@@ -19,6 +19,6 @@ export function signOutUser(): Promise<void> {
       localStorage.removeItem(USER_TOKEN);
     })
     .catch((error) => {
-      throw new Error(error.response?.data?.message || 'Failed to sign out');
+      localStorage.removeItem(USER_TOKEN);
     });
 }
