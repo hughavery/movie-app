@@ -67,6 +67,7 @@ function SelectedFilm() {
   return (
     <div className="d-flex justify-content-center">
       <div className="row">
+      <Link to={`/films`}>Back</Link>
         <div className="col-md-6 offset-md-3 mb-4 mt-1">
           <div className="card" style={{ width: '30rem' }}>
             <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" />

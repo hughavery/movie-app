@@ -10,3 +10,5 @@ export const SORT_BY = [
   'RATING_ASC',
   'RATING_DESC',
 ];
+
+export const USER_TOKEN = 'userToken'
