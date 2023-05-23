@@ -1,17 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from './navbar';
 
 function Home() {
+
   return (
     <div>
-      <h1>Films</h1>
-      <div>
-        <Link to="/films">Go to movies</Link>
+      <Navbar />
       </div>
-      <div>
-        <Link to="/login">Login</Link>
-      </div>
-    </div>
   );
 }
 

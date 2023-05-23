@@ -8,7 +8,7 @@ import {API_URL} from "../api/CONSTANTS";
 import { Genre } from '../types/genre'
 import { getGenres } from '../api/films/getGenres'
 import { getReviews, getSimilarFilms} from '../api/films/getReviews'
-
+import Navbar from './navbar';
 
 
 function SelectedFilm() {
@@ -65,9 +65,10 @@ function SelectedFilm() {
   }
 
   return (
+    <div>
+      <Navbar />
     <div className="d-flex justify-content-center">
       <div className="row">
-      <Link to={`/films`}>Back</Link>
         <div className="col-md-6 offset-md-3 mb-4 mt-1">
           <div className="card" style={{ width: '30rem' }}>
             <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" />
@@ -151,6 +152,7 @@ function SelectedFilm() {
         </div>
   
       </div>
+    </div>
     </div>
   );
   

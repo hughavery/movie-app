@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../api/user/registerUser';
 import { loginUser } from '../api/user/loginUser';
 import { putUserImage } from '../api/images/putUserImage';
+import Navbar from './navbar';
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,6 +59,9 @@ function Register() {
    
 
   return (
+    <div>
+    <Navbar />
+
     <div className="container">
       <div className="row justify-content-center mt-5">
         <div className="col-md-6">
@@ -108,6 +112,7 @@ function Register() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

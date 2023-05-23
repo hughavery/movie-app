@@ -6,7 +6,7 @@ import { Genre } from '../types/genre'
 import {API_URL, AGE_RATINGS, SORT_BY} from "../api/CONSTANTS";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link, Route } from "react-router-dom";
-
+import Navbar from './navbar';
 
 
 
@@ -106,9 +106,11 @@ function Films() {
   // Rest of the code...
 
   return (
+    <div>
+      <Navbar />
     <div className="container">
       <h1 className="text-center">Explore Films</h1>
-      <nav className="navbar navbar-light bg-light justify-content-between">
+      <nav className="navbar navbar-light bg-primary justify-content-between" data-bs-theme="dark">
         <a className="navbar-brand">Filters</a>
 
         <div className={`dropdown ${isGenreDropdownOpen ? 'show' : ''}`}>
@@ -234,6 +236,7 @@ function Films() {
       </li>
       </ul>
     </div>
+  </div>
   </div>
   );
 }
