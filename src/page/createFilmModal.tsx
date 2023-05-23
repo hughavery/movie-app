@@ -83,7 +83,7 @@ function CreateFilmModal() {
                   <select className="form-control" name="genre" value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
                     <option value="">Select a genre</option>
                     {genres.map((genre) => (
-                      <option key={genre.genreId} value={genre.name}>
+                      <option key={genre.genreId} value={genre.genreId}>
                         {genre.name}
                       </option>
                     ))}
