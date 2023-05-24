@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, USER_TOKEN} from '../CONSTANTS';
+import { API_URL, USER_TOKEN, USER_ID} from '../CONSTANTS';
 
 
 interface User {
@@ -15,6 +15,7 @@ export function loginUser(userData: User): Promise<string> {
       console.log('Login successful');
       console.log(response.data);
       localStorage.setItem(USER_TOKEN,response.data.token)
+      localStorage.setItem(USER_ID,response.data.userId)
       return response.data.userId;
     })
     .catch((error) => {

@@ -12,3 +12,5 @@ export const SORT_BY = [
 ];
 
 export const USER_TOKEN = 'userToken'
+
+export const USER_ID = 'userId'

@@ -9,5 +9,6 @@ export type Film = {
   ageRating: string;
   rating: number;
   description: string;
+  runtime: number;
 }
   

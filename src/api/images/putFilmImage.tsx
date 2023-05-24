@@ -5,7 +5,7 @@ export async function putFilmImage(filmId: string, imageFile: File): Promise<voi
   try {
 
     const userToken = localStorage.getItem(USER_TOKEN);
-    await axios.put(`${API_URL}/users/${filmId}/image`, imageFile, {
+    await axios.put(`${API_URL}/films/${filmId}/image`, imageFile, {
       headers: {
         'Content-Type': imageFile.type,
         'X-Authorization': userToken
@@ -13,7 +13,7 @@ export async function putFilmImage(filmId: string, imageFile: File): Promise<voi
     });
 
     // Image update successful
-    console.log('User image updated successfully');
+    console.log('film image updated successfully');
   } catch (error) {
     console.error('Failed to update user image:', error);
     throw new Error('Failed to update user image');

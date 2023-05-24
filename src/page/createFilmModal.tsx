@@ -49,13 +49,9 @@ function CreateFilmModal() {
     else {
     try {
       const filmId = await PostFilms(filmData);
-      try {
         putFilmImage(filmId, imageFile)
+        cancelRef.current?.click()
 
-      } catch (error: any) {
-        
-      }
-      // Add any success message or redirect to a different page after successful submission
     } catch (error: any) {
         setErrorMessage(error.message || 'Failed to register user');
         if (error.message === 'No genre with id') {

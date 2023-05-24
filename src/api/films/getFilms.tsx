@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {API_URL} from "../CONSTANTS";
-import { Film } from '../../types/film';
+import {API_URL,USER_ID} from "../CONSTANTS";
+
 
 export async function getFilm(filmId: string) {
   try {
@@ -11,6 +11,19 @@ export async function getFilm(filmId: string) {
     return null;
   }
 }
+
+export async function getFilmsByDirectorId() {
+  try {
+    const directorId = localStorage.getItem(USER_ID)
+    const response = await axios.get(`${API_URL}/films?directorId=${directorId}`);
+    const {films} = response.data;
+    return films;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 
 export async function getFilmsPage(
   pageNumber: number,
