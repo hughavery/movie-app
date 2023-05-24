@@ -6,8 +6,8 @@ interface FilmData {
     description: string;
     releaseDate?: string;
     genreId: number;
-    ageRating: string;
-    runtime: number;
+    ageRating?: string;
+    runtime?: number;
   }
   
 export function PostFilms(filmData: FilmData) {

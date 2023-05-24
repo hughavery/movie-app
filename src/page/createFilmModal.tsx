@@ -1,11 +1,13 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getGenres } from '../api/films/getGenres';
 import { Genre } from '../types/genre';
 import { AGE_RATINGS } from '../api/CONSTANTS';
 import { PostFilms } from '../api/films/postFilms';
+import { putFilmImage } from '../api/images/putFilmImage';
 
 function CreateFilmModal() {
+  const cancelRef = useRef<HTMLButtonElement | null>(null);
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedAgeRating, setSelectedAgeRating] = useState('');
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -27,27 +29,39 @@ function CreateFilmModal() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const imageFile = (e.target as HTMLFormElement).image.files[0];
 
+
+    e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const filmData = {
       title: String(formData.get('title')),
       description: String(formData.get('description')),
       releaseDate: formData.get('releaseDate') ? String(formData.get('releaseDate')).replace("T", " ") + ":00" : undefined,
       genreId: Number(selectedGenre),
-      ageRating: selectedAgeRating,
-      runtime: Number(formData.get('runtime')),
+      ageRating: selectedAgeRating ? selectedAgeRating : undefined,
+      runtime: formData.get('runtime') ? Number(formData.get('runtime')) : undefined,
     };
-  
+    if (!imageFile) {
+      setErrorMessage('Please pick a photo for your movie')
+    }
 
+    else {
     try {
-      const response = await PostFilms(filmData);
-      console.log('Film created:', response);
+      const filmId = await PostFilms(filmData);
+      try {
+        putFilmImage(filmId, imageFile)
+
+      } catch (error: any) {
+        
+      }
       // Add any success message or redirect to a different page after successful submission
-    } catch (error) {
-      console.error('Error creating film:', error);
-      // Handle error state or display an error message
-      setErrorMessage('Failed to create film');
+    } catch (error: any) {
+        setErrorMessage(error.message || 'Failed to register user');
+        if (error.message === 'No genre with id') {
+          setErrorMessage('Please select a genre')
+        }
+      }
     }
   };
 
@@ -56,16 +70,19 @@ function CreateFilmModal() {
       <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         New Film
       </button>
-
       <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Create Film</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button ref={cancelRef} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="image" className="form-label">Profile Image</label>
+                  <input type="file" className="form-control" id="image" accept=".jpg, .jpeg, .png, .gif" />
+                </div>
                 <div className="mb-3">
                   <label className="form-label">Title</label>
                   <input name="title" className="form-control" placeholder="Provide a title" />
