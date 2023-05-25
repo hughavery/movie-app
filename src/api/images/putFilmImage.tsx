@@ -5,7 +5,7 @@ export async function putFilmImage(filmId: string, imageFile: File): Promise<voi
   try {
 
     const userToken = localStorage.getItem(USER_TOKEN);
-    await axios.put(`${API_URL}/films/${filmId}/image`, imageFile, {
+    const check = await axios.put(`${API_URL}/films/${filmId}/image`, imageFile, {
       headers: {
         'Content-Type': imageFile.type,
         'X-Authorization': userToken

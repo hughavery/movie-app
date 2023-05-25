@@ -5,6 +5,10 @@ import { getFilm } from '../api/films/getFilms';
 import { getGenres } from '../api/films/getGenres';
 import { Genre } from '../types/genre';
 import { AGE_RATINGS } from '../api/CONSTANTS';
+import { PatchFilms } from '../api/films/patchFilms';
+import { putFilmImage } from '../api/images/putFilmImage';
+import { useNavigate } from 'react-router-dom';
+
 
 interface EditFilmModalProps {
   filmId: number;
@@ -16,6 +20,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedAgeRating, setSelectedAgeRating] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchFilm() {
       try {
@@ -78,16 +83,19 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
       runtime: formData.get('runtime') ? Number(formData.get('runtime')) : undefined,
     };
 
-    // try {
-    //     const filmId = await PostFilms(filmData);
-    //       putFilmImage(filmId, imageFile)
-    //       cancelRef.current?.click()
+    try {
+        const filmId = await PatchFilms(filmData, String(film.filmId));
+        if (imageFile) {
+          putFilmImage(filmId, imageFile)
+        }
+        window.location.reload(); 
   
-    //   } catch (error: any) {
-    //       setErrorMessage(error.message || 'Failed to register user');
-    //       if (error.message === 'No genre with id') {
-    //         setErrorMessage('Please select a genre')
-    //       }
+      } catch (error: any) {
+          setErrorMessage(error.message || 'Failed to register user');
+          if (error.message === 'No genre with id') {
+            setErrorMessage('Please select a genre')
+          }
+        }
 
   }
 
@@ -187,5 +195,6 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
     </div>
   );
 }
+
 
 export default EditFilmModal;

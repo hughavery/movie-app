@@ -24,6 +24,18 @@ export async function getFilmsByDirectorId() {
   }
 }
 
+export async function getReviewedFilmsByDirectorId() {
+  try {
+    const directorId = localStorage.getItem(USER_ID)
+    const response = await axios.get(`${API_URL}/films?reviewerId=${directorId}`);
+    const {films} = response.data;
+    return films;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 
 export async function getFilmsPage(
   pageNumber: number,

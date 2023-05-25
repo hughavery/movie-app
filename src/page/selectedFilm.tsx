@@ -4,8 +4,9 @@ import { getFilm } from '../api/films/getFilms';
 import { Film } from '../types/film';
 import { Review } from '../types/review';
 import 'bootstrap/dist/css/bootstrap.css';
-import {API_URL} from "../api/CONSTANTS";
+import {API_URL, USER_ID} from "../api/CONSTANTS";
 import { Genre } from '../types/genre'
+import ReviewFilmModal from "./reviewFilmModal"
 import { getGenres } from '../api/films/getGenres'
 import { getReviews, getSimilarFilms} from '../api/films/getReviews'
 import Navbar from './navbar';
@@ -64,6 +65,29 @@ function SelectedFilm() {
     );
   }
 
+  function displayReviewModal(date: string) {
+    const releaseDate = new Date(date);
+    const currentDate = new Date();
+    const currentUserId = localStorage.getItem(USER_ID) 
+    console.log(currentUserId)
+    console.log(reviews)
+    if (releaseDate > currentDate) {
+      console.log("Cannot review a film that has not been released.");
+      return false;
+    }
+
+    if (currentUserId && reviews.some((review) => review.reviewerId === Number(currentUserId))) {
+      return false;
+    }
+
+  
+    return true;
+  }
+  
+  
+  
+
+
   return (
     <div>
       <Navbar />
@@ -80,6 +104,7 @@ function SelectedFilm() {
               <p>Genre: {genres.find((genre) => genre.genreId === film.genreId)?.name}</p>
               <p>Age Rating: {film.ageRating}</p>
               <p>User Ratings: {film.rating}</p>
+              {displayReviewModal(film.releaseDate) && <ReviewFilmModal filmId={film.filmId} />}
             </div>
           </div>
         </div>

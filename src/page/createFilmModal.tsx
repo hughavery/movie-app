@@ -49,8 +49,11 @@ function CreateFilmModal() {
     else {
     try {
       const filmId = await PostFilms(filmData);
+      console.log('yezy')
+      console.log(imageFile)
         putFilmImage(filmId, imageFile)
-        cancelRef.current?.click()
+        // cancelRef.current?.click()
+        window.location.reload(); 
 
     } catch (error: any) {
         setErrorMessage(error.message || 'Failed to register user');
