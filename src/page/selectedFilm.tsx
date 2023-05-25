@@ -95,7 +95,9 @@ function SelectedFilm() {
             <div className="card" style={{ maxWidth: '30rem', margin: '0 auto' }}>
             <p className="text-danger">{loginPrompt}</p>
             {displayReviewModal(film.releaseDate) && <ReviewFilmModal filmId={film.filmId} /> }
-            {!displayReviewModal(film.releaseDate) && <p>you cant review this film. If you are not logged in do that now</p> }
+            {!displayReviewModal(film.releaseDate) && localStorage.getItem(USER_ID) === null && (
+                <Link className="link" to="/login">Login to review</Link>
+              )}
               <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
               <div className="card-body text-center">
                 <h5 className="card-title">Film info</h5>
