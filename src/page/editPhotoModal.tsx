@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { USER_ID, API_URL } from '../api/CONSTANTS';
 import { User } from '../types/user';
-import { putUserImage } from '../api/images/putUserImage';
+import { PutUserImage } from '../api/images/putUserImage';
+import { DeleteUserImage } from '../api/images/deleteUserImage';
 
 interface EditPhotoModalProps {
   user: User;
@@ -17,14 +18,26 @@ function EditPhotoModal(props: EditPhotoModalProps) {
     const imageFile = (event.target as HTMLFormElement).image.files[0];
     if (imageFile && currentUserId) {
       try {
-        await putUserImage(currentUserId, imageFile);
+        await PutUserImage(currentUserId, imageFile);
         setError('');
-        window.location.reload(); 
+        window.location.reload();
       } catch (error) {
         setError('An error occurred while updating the photo. Please try again.');
       }
     } else {
-        setError('Please select a photo')
+      setError('Please select a photo');
+    }
+  };
+
+  const handleDeletePhoto = async () => {
+    if (currentUserId) {
+      try {
+        await DeleteUserImage(currentUserId);
+        setError('');
+        window.location.reload();
+      } catch (error: any) {
+        setError(error.message || 'An error occurred while deleting the photo. Please try again.');
+      }
     }
   };
 
@@ -81,6 +94,9 @@ function EditPhotoModal(props: EditPhotoModalProps) {
 
                 <button type="submit" className="btn btn-primary">
                   Update Pic
+                </button>
+                <button type="button" className="btn btn-danger" onClick={handleDeletePhoto}>
+                  Delete pic
                 </button>
               </form>
             </div>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { USER_TOKEN } from '../api/CONSTANTS';
 import { signOutUser } from '../api/user/logOut';
 
+
 function Navbar() {
   const [userToken, setUserToken] = useState(localStorage.getItem(USER_TOKEN));
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ function Navbar() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
+          {/* <Link className="navbar-brand" to="/">
+            <img src={logo} alt="Logo" className="navbar-logo" />
+          </Link> */}
           <button
             className="navbar-toggler"
             type="button"
@@ -62,6 +66,9 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
+        {/* <Link className="navbar-brand" to="/">
+          <img src={logo} alt="Logo" className="navbar-logo" />
+        </Link> */}
         <button
           className="navbar-toggler"
           type="button"

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../api/user/loginUser';
 import Navbar from './navbar';
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const navigate = useNavigate();
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -19,6 +19,7 @@ function Login() {
     try {
       const userId = await loginUser(userData);
       setErrorMessage('');
+      navigate('/films');
 
     } catch (error: any) {
       setErrorMessage(error.message || 'Failed to login');

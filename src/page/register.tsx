@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../api/user/registerUser';
 import { loginUser } from '../api/user/loginUser';
-import { putUserImage } from '../api/images/putUserImage';
+import { PutUserImage } from '../api/images/putUserImage';
 import Navbar from './navbar';
 
 function Register() {
@@ -42,7 +42,7 @@ function Register() {
         // Check if the user uploaded a photo
         const imageFile = (e.target as HTMLFormElement).image.files[0];
         if (imageFile) {
-            putUserImage(userId, imageFile)
+            PutUserImage(userId, imageFile)
         }
 
         // Redirect to the films page or any other desired page upon successful login

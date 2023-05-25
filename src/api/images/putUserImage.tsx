@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL, USER_TOKEN } from '../CONSTANTS';
 
-export async function putUserImage(userId: string, imageFile: File): Promise<void> {
+export async function PutUserImage(userId: string, imageFile: File): Promise<void> {
   try {
 
     const userToken = localStorage.getItem(USER_TOKEN);

@@ -185,7 +185,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
                 </div> 
                 <button type="submit" className="btn btn-primary">
                   Edit Movie
-                </button>     
+                </button> 
                 {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}            
               </form>
             </div>

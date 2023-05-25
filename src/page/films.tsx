@@ -103,6 +103,15 @@ function Films() {
     setIsSortDropdownOpen(!isSortDropdownOpen);
   }
 
+  function resetFilters() {
+    setGenreFilter([]);
+    setAgeFilters([]);
+    setSortOption('');
+    setIsGenreDropdownOpen(false); // Close the genre dropdown
+    setIsAgeDropdownOpen(false); // Close the age dropdown
+    setIsSortDropdownOpen(false);
+    }
+
   // Rest of the code...
 
   return (
@@ -201,6 +210,10 @@ function Films() {
         value={searchQuery} onChange={handleSearchQueryChange}/>
         </div>
       </form>
+
+      <button className="btn btn-secondary" onClick={resetFilters}>
+          Reset Filters
+        </button>
     </nav>
     <ul className="row">
       {films.map((film) => (
