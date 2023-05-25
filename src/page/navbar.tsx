@@ -48,13 +48,13 @@ function Navbar() {
                 <Link className="nav-link" to="/films">Films</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/gallery">Gallery</Link>
+                <Link className="nav-link" to="/gallery">My Gallery</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/profile">Profile</Link>
               </li>
               <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={handleSignOut}>Sign Out</button>
+                <button className="nav-link btn btn-link" onClick={handleSignOut}>Log Out</button>
               </li>
             </ul>
           </div>

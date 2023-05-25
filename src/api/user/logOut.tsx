@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, USER_TOKEN } from '../CONSTANTS';
+import { API_URL, USER_TOKEN, USER_ID} from '../CONSTANTS';
 
 export function signOutUser(): Promise<void> {
   const userToken = localStorage.getItem(USER_TOKEN);
@@ -17,8 +17,10 @@ export function signOutUser(): Promise<void> {
     .then(() => {
       console.log('Sign out successful');
       localStorage.removeItem(USER_TOKEN);
+      localStorage.removeItem(USER_ID);
     })
     .catch((error) => {
       localStorage.removeItem(USER_TOKEN);
+      localStorage.removeItem(USER_ID);
     });
 }

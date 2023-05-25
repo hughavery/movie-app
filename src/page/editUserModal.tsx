@@ -19,12 +19,11 @@ function EditUserModal(props: EditUserModalProps) {
       lastName: String(formData.get('lastName')),
       email: String(formData.get('email')),
       currentPassword: formData.get('currentPassword') ? String(formData.get('currentPassword')) : undefined,
-      newPassword: formData.get('newPassword') ? String(formData.get('newPassword')) : undefined
+      password: formData.get('newPassword') ? String(formData.get('newPassword')) : undefined
     };
 
     if (currentUserId) {
       try {
-        console.log(userData);
         await PatchUser(userData, currentUserId);
         window.location.reload();
       } catch (error: any) {

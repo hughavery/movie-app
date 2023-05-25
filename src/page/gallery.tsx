@@ -74,6 +74,10 @@ function Gallery() {
                       <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"} />
                       <div className="card-body">
                         <h6 className="card-subtitle">{film.title}</h6>
+                        <div className="text-center"> {/* Add a div with "text-center" class */}
+                          <img src={`${API_URL}/users/${film.directorId}/image`} alt="Director" width={40} onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
+                        </div>
+                        <p>Director: {film.directorFirstName} {film.directorLastName}</p>
                         <p className="card-text">{film.description}</p>
                         <p>Release Date: {new Date(film.releaseDate).toLocaleDateString()}</p>
                         <p>Age Rating: {film.ageRating}</p>
@@ -109,6 +113,10 @@ function Gallery() {
                       <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"} />
                       <div className="card-body">
                         <h6 className="card-subtitle">{film.title}</h6>
+                        <div className="text-center"> {/* Add a div with "text-center" class */}
+                          <img src={`${API_URL}/users/${film.directorId}/image`} alt="Director" width={40} onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
+                        </div>
+                        <p>Director: {film.directorFirstName} {film.directorLastName}</p>
                         <p className="card-text">{film.description}</p>
                         <p>Release Date: {new Date(film.releaseDate).toLocaleDateString()}</p>
                         <p>Age Rating: {film.ageRating}</p>

@@ -17,7 +17,7 @@ function SelectedFilm() {
   const [genres, setGenres] = useState([] as Genre[])
   const [reviews, setReviews] = useState([] as Review[])
   const [similarFilms, setSimilarFilms] = useState<Film[] | null>(null);
-
+  let loginPrompt = null
   useEffect(() => {
     async function fetchFilm() {
       if (id) {
@@ -68,6 +68,13 @@ function SelectedFilm() {
     const currentUserId = localStorage.getItem(USER_ID)
     console.log(currentUserId)
     console.log(reviews)
+    if (currentUserId === null) {
+      console.log(currentUserId === null)
+      console.log('dog')
+      loginPrompt = "login to review movie"
+      console.log(loginPrompt)
+      return false
+    }
     if (releaseDate > currentDate) {
       console.log("Cannot review a film that has not been released.");
       return false;
@@ -79,7 +86,6 @@ function SelectedFilm() {
 
     return true;
   }
-
   return (
     <div className="container">
       <Navbar />
@@ -87,7 +93,10 @@ function SelectedFilm() {
         <div className="row">
           <div className="col-lg-6 offset-lg-3 col-md-8 offset-md-2 mb-4 mt-1">
             <div className="card" style={{ maxWidth: '30rem', margin: '0 auto' }}>
-              <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" />
+            <p className="text-danger">{loginPrompt}</p>
+            {displayReviewModal(film.releaseDate) && <ReviewFilmModal filmId={film.filmId} /> }
+            {!displayReviewModal(film.releaseDate) && <p>you cant review this film. If you are not logged in do that now</p> }
+              <img src={`${API_URL}/films/${film.filmId}/image`} alt="Photo" onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
               <div className="card-body text-center">
                 <h5 className="card-title">Film info</h5>
                 <p className="card-title">{film.title}</p>
@@ -96,8 +105,6 @@ function SelectedFilm() {
                 <p>Genre: {genres.find((genre) => genre.genreId === film.genreId)?.name}</p>
                 <p>Age Rating: {film.ageRating}</p>
                 <p>User Ratings: {film.rating}</p>
-                {displayReviewModal(film.releaseDate) && <ReviewFilmModal filmId={film.filmId} />}
-
                 <div className="card mt-4">
                   <h5 className="card-title">Director info</h5>
                   <div className="card-body">
@@ -148,9 +155,13 @@ function SelectedFilm() {
                     {similarFilms.slice(0, 3).map((similarFilm) => (
                       <div className="col-lg-4 col-md-6 col-sm-12" key={similarFilm.filmId}>
                         <div className="card mb-3">
-                          <img src={`${API_URL}/films/${similarFilm.filmId}/image`} alt="Photo" className="card-img-top" style={{ objectFit: 'cover', height: '200px' }} />
+                          <img src={`${API_URL}/films/${similarFilm.filmId}/image`} alt="Photo" className="card-img-top" style={{ objectFit: 'cover', height: '200px' }} onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"} />
                           <div className="card-body">
                             <h6 className="card-subtitle">{similarFilm.title}</h6>
+                            <div className="text-center"> {/* Add a div with "text-center" class */}
+                              <img src={`${API_URL}/users/${film.directorId}/image`} alt="Director" width={40} onError={e => (e.target as HTMLImageElement).src = "https://avatar.vercel.sh/cookie"}/>
+                            </div>
+                            <p>Director: {film.directorFirstName} {film.directorLastName}</p>
                             <p className="card-text">{similarFilm.description}</p>
                             <p>Release Date: {new Date(similarFilm.releaseDate).toLocaleDateString()}</p>
                             <p>Genre: {genres.find((genre) => genre.genreId === similarFilm.genreId)?.name}</p>

@@ -10,6 +10,8 @@ interface UserData {
   }
   
 export function PatchUser(userData: UserData,userId: string) {
+  console.log(userData)
+  console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;")
   const userToken = localStorage.getItem(USER_TOKEN);
   return axios.patch(`${API_URL}/users/${userId}`, userData, {
     headers: {
@@ -17,6 +19,8 @@ export function PatchUser(userData: UserData,userId: string) {
     },
   })
     .then((response) => {
+      console.log(response)
+      console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;")
       console.log(response.status);
       console.log(response.data.userId);
       return response.data.userId;

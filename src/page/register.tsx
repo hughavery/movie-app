@@ -99,7 +99,7 @@ function Register() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <button type="submit" className="btn btn-primary" disabled={loading}>
+                  <button type="submit" className="btn btn-info" disabled={loading}>
                     {loading ? 'Registering...' : 'Register'}
                   </button>
                   {errorMessage && <p className="text-danger">{String(errorMessage)}</p>}
