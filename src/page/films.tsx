@@ -119,12 +119,12 @@ function Films() {
       <Navbar />
     <div className="container">
       <h1 className="text-center">Explore Films</h1>
-      <nav className="navbar navbar-light bg-primary justify-content-between" data-bs-theme="dark">
+      <nav className="navbar navbar-light bg-info justify-content-between" data-bs-theme="dark">
         <a className="navbar-brand">Filters</a>
 
         <div className={`dropdown ${isGenreDropdownOpen ? 'show' : ''}`}>
           <button
-            className="btn btn-secondary dropdown-toggle"
+            className="btn btn-primary dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
             onClick={toggleGenreDropdown}
@@ -150,7 +150,7 @@ function Films() {
 
         <div className={`dropdown ${isAgeDropdownOpen ? 'show' : ''}`}>
         <button
-          className="btn btn-secondary dropdown-toggle"
+          className="btn btn-primary dropdown-toggle"
           type="button"
           id="ageDropdownMenuButton"
           onClick={toggleAgeDropdown}
@@ -175,7 +175,7 @@ function Films() {
 
       <div className={`dropdown ${isSortDropdownOpen ? "show" : ""}`}>
         <button
-          className="btn btn-secondary dropdown-toggle"
+          className="btn btn-primary dropdown-toggle"
           type="button"
           id="sortDropdownMenuButton"
           onClick={toggleSortDropdown}
@@ -211,7 +211,7 @@ function Films() {
         </div>
       </form>
 
-      <button className="btn btn-secondary" onClick={resetFilters}>
+      <button className="btn btn-primary" onClick={resetFilters}>
           Reset Filters
         </button>
     </nav>

@@ -48,7 +48,7 @@ function Login() {
                     <input type="password" className="form-control" id="password" />
                   </div>
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                    <button type="submit" className="btn btn-info" disabled={loading}>
                       {loading ? 'Logging in...' : 'Login'}
                     </button>
                     {errorMessage && <p className="text-danger">{errorMessage}</p>}

@@ -103,7 +103,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
     <div>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target={`#editFilmModal-${film.filmId}`}
       >
@@ -183,7 +183,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
                   <label className="form-label">Runtime (minutes)</label>
                   <input name="runtime" className="form-control" placeholder="Add a Runtime" defaultValue={film.runtime} type="number" max="300" />
                 </div> 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-success">
                   Edit Movie
                 </button> 
                 {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}            

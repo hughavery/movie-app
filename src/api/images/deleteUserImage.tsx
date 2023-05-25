@@ -13,7 +13,9 @@ export async function DeleteUserImage(userId: string): Promise<void> {
     // Image update successful
     console.log('User image deleted successfully');
   } catch (error) {
+    console.log(error)
+    console.log("why")
     console.error('Failed to delete user image:', error);
-    throw new Error('Failed to delete user image');
+    throw new Error("Can not delete default image");
   }
 }

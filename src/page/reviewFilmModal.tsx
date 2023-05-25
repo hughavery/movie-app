@@ -50,7 +50,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
     <div>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-info"
         data-bs-toggle="modal"
         data-bs-target={`#reviewFilmModal-${film.filmId}`}
       >
@@ -101,7 +101,7 @@ function EditFilmModal({ filmId }: EditFilmModalProps) {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-success">
                   Submit Review
                 </button>
                 {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}  

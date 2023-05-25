@@ -36,6 +36,7 @@ function EditPhotoModal(props: EditPhotoModalProps) {
         setError('');
         window.location.reload();
       } catch (error: any) {
+        console.log(error.message)
         setError(error.message || 'An error occurred while deleting the photo. Please try again.');
       }
     }
@@ -92,12 +93,15 @@ function EditPhotoModal(props: EditPhotoModalProps) {
 
                 {error && <p className="text-danger">{error}</p>}
 
-                <button type="submit" className="btn btn-primary">
-                  Update Pic
-                </button>
-                <button type="button" className="btn btn-danger" onClick={handleDeletePhoto}>
-                  Delete pic
-                </button>
+                <div className="d-flex justify-content-between">
+                  <button type="submit" className="btn btn-success">
+                    Update Pic
+                  </button>
+                  <button type="button" className="btn btn-danger" onClick={handleDeletePhoto}>
+                    Delete Pic
+                  </button>
+                </div>
+
               </form>
             </div>
           </div>

@@ -66,7 +66,7 @@ function CreateFilmModal() {
 
   return (
     <div>
-      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
         New Film
       </button>
       <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,7 +120,7 @@ function CreateFilmModal() {
                   <label className="form-label">Runtime (minutes)</label>
                   <input name="runtime" className="form-control" placeholder="Runtime" type="number" max="300" />
                 </div>  
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-success">
                   Publish Movie
                 </button>     
                 {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}

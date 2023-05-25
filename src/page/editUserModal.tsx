@@ -37,7 +37,7 @@ function EditUserModal(props: EditUserModalProps) {
     <div>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#editUserModal"
       >
@@ -124,7 +124,7 @@ function EditUserModal(props: EditUserModalProps) {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-warning">
                   Edit User
                 </button>
                 {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}
